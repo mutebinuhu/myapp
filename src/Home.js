@@ -9,7 +9,7 @@ const Home = () =>{
                             Open Enterprise
                         </div>
                         <ul className="flex  font-medium">
-                            <div className="hidden">
+                            <div className="hidden sm:display">
                                 <svg viewBox="0 0 100 80" width="40" height="40">
                                 <rect width="100" height="20"></rect>
                                 <rect y="30" width="100" height="20"></rect>
@@ -24,16 +24,16 @@ const Home = () =>{
                     </nav>
                 </div>
                 <div className="py-8 px-8 md:flex md:justify-between w-full text-gray-800">
-                    <div className="md:w-2/5 font-inter mt-6 text-center md:text-left">
+                    <div className="md:w-2/5 font-inter mt-4 text-center md:text-left">
                         <h1 className="text-5xl font-bold ">A new model for open collaboration</h1>
-                        <p className="text-lg mt-2">Run an organization where members get rewarded for their contributions with fractional ownership.
+                        <p className="text-lg mt-4">Run an organization where members get rewarded for their contributions with fractional ownership.
                         </p>
-                      <div className="mt-6">
+                      <div className="mt-10">
                       <a href="#" className="bg-green-600 hover:bg-green-500  rounded-lg  text-white py-3 px-3">Request Early Access</a>
                       </div>
                     </div>
-                    <div className="md:w-3/5 mt-10 md:mt-0 bg-hero-pattern bg-contain bg-no-repeat bg-center">
-                        <div>
+                    <div className="relative md:w-3/5 mt-79 md:mt-0 bg-hero-pattern bg-contain bg-no-repeat bg-bottom">
+                        <div className="">
                             <img src={Illustration} alt="landing page" />
                         </div>
                     </div>
