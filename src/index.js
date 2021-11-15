@@ -9,7 +9,6 @@ import {Provider, connect} from 'react-redux';
 import thunk from 'redux-thunk'
 
 const store = createStore(myReducers,compose(applyMiddleware(thunk),  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
-console.log(store)
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
