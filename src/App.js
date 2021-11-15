@@ -8,13 +8,22 @@ function App() {
  const [name,setName] = useState('')
  const [password, setPassword] = useState('')
 
+ const [success, setSuccess] = useState(false)
+ const [errors, setErrors] = useState(false)
+
  const handleSubmit = (e) =>{
    e.preventDefault();
    const userData = {name, password}
-   if(userData.name !== userName && userData.password !== userPassword){
-     
+   if(userData.name == userName && userData.password == userPassword){
+     setSuccess(true)
+     setTimeout(()=>{
+       setSuccess(false)
+     }, 2000)
    }else{
-     console.log("true")
+    setErrors(true)
+    setTimeout(()=>{
+      setErrors(false)
+    }, 2000)
    }
    
  }
@@ -22,9 +31,11 @@ function App() {
     <div className="md:flex">
            <div className=" w-full md:w-1/2 md:px-24 md:py-24 relative h-full mt-20">
                <div className="mb-2">
-               <img src="" alt="" className="h-30 w-30 ml-5 mt-2 md:m-0" />
                </div>
+              
                  <form className="bg-blue-100 rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={handleSubmit}>
+                 {success && <div className="bg-green-500 mb-4 text-white italic py-2 px-2  mt-1">Success</div>}
+                 {errors && <div className="bg-red-500 mb-4 text-white italic py-2 px-2  mt-1">Wrong Credentials</div>}
                         <div className="mb-6 md:ml-6 md:mr-6">
                         <label className="block text-gray-700 text-sm mb-1 font-semibold" for="email address">
                           Username
