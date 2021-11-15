@@ -14,16 +14,25 @@
    
     const [success, setSuccess] = useState(false)
     const [errors, setErrors] = useState(false)
+
+    //change password
+    const[newPassword, setNewPassword] = useState('');
+
+    const[hideChagePasswordform, sethideChagePasswordform] = useState(false)
+    const[hideform, sethideform] = useState(false)
+
    
     const handleSubmit = (e) =>{
-
       e.preventDefault();
       const userData = {name, password}
       if(userData.name == userName && userData.password == userPassword){
         setSuccess(true)
         setTimeout(()=>{
           setSuccess(false)
-         window.location.href='/home'
+            if(sethideChagePasswordform(true)){
+               sethideChagePasswordform(true) 
+            }
+           // window.location.href='/home'
           
         }, 2000)
    
@@ -35,9 +44,29 @@
       }
       
     }
+    const changePassword = (e) =>{
+        e.preventDefault()
+        const newpd = newPassword;
+        
+    }
+   
     return( <div className="md:flex">
     <div className=" w-full md:w-1/2 md:px-24 md:py-24 relative h-full mt-20">
         <div className="mb-2">
+        {hideChagePasswordform &&    <form className="bg-blue-100 rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={changePassword}>    
+               
+               <div className="mb-6 md:ml-6 md:mr-6">
+               <label className="block text-gray-700 text-sm font-semibold mb-1" for="password" value={newPassword} onChange={(e)=>e.target.value}>
+                   Change Password
+               </label>
+               <input className="appearance-none border  rounded-lg w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
+               </div>
+               <div className="mb-2 md:ml-6 md:mr-6">
+               <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-6 rounded-lg focus:outline-none focus:shadow-outline text-sm" type="submit">
+                   submit
+               </button>
+               </div>
+      </form>}
         </div>
           <form className="bg-blue-100 rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={handleSubmit}>
 
