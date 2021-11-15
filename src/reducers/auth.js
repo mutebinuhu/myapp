@@ -12,7 +12,7 @@ const authReducer = (state=initialState, action)=>{
             loggedIn:true,
             payload:action.payload
         }
-        default:
+    default:
             return state
 }
 }
