@@ -30,7 +30,7 @@ function App() {
                      
                  </div>
 
-                 <div className="w-1/2  bg-blue-400 md:h-screen fixed right-0">
+                 <div className="w-1/2  bg-blue-400 md:h-screen fixed right-0" style={{background:"#E5E5E5"}}>
                      
                  </div>
             </div>
