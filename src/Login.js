@@ -1,12 +1,14 @@
 
- import {useSelector} from 'react-redux'
+ import {useSelector, useDispatch} from 'react-redux'
  import {useState} from 'react';
  import { useHistory } from 'react-router';
  import Logo from './images/Logo.svg'; 
+import { login } from './actions';
 
  const Login = () =>{
- 
+    const dispatch = useDispatch();
     const info = useSelector(state=>state.authReducer)
+    const pd  = useSelector(state=>state.authReducer)
     const userName = info.username
     const userPassword = info.password
     const [name,setName] = useState('')
@@ -20,6 +22,7 @@
 
     const[hideChagePasswordform, sethideChagePasswordform] = useState(false)
     const[hideform, sethideform] = useState(false)
+    const[hidePassword, setHidePassword] = useState(false)
 
    
     const handleSubmit = (e) =>{
@@ -31,8 +34,8 @@
           setSuccess(false)
             if(sethideChagePasswordform(true)){
                sethideChagePasswordform(true) 
+
             }
-           // window.location.href='/home'
           
         }, 2000)
    
@@ -47,14 +50,23 @@
     const changePassword = (e) =>{
         e.preventDefault()
         const newpd = newPassword;
-        
+        setPassword(newpd)
+        setHidePassword(true)
+       if(newPassword){
+        setTimeout(()=>{
+            window.location.href='/home'
+        },500)
+
+       }
+  
     }
    
     return( <div className="md:flex">
     <div className=" w-full md:w-1/2 md:px-24 md:py-24 relative h-full mt-20">
         <div className="mb-2">
+        
         {hideChagePasswordform &&    <form className="bg-blue-100 rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={changePassword}>    
-               
+        {hidePassword && <div className="bg-green-500 mb-4 text-white italic py-2 px-2  mt-1"><span className="font-bold">{pd.password}</span> is the new password</div>}
                <div className="mb-6 md:ml-6 md:mr-6">
                <label className="block text-gray-700 text-sm font-semibold mb-1" for="password" value={newPassword} onChange={(e)=>e.target.value}>
                    Change Password
@@ -62,7 +74,7 @@
                <input className="appearance-none border  rounded-lg w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
                </div>
                <div className="mb-2 md:ml-6 md:mr-6">
-               <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-6 rounded-lg focus:outline-none focus:shadow-outline text-sm" type="submit">
+               <button onClick={()=>dispatch(login(newPassword))} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-6 rounded-lg focus:outline-none focus:shadow-outline text-sm" type="submit">
                    submit
                </button>
                </div>
