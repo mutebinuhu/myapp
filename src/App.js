@@ -7,18 +7,16 @@ function App() {
  const userPassword = info.password
  const [name,setName] = useState('')
  const [password, setPassword] = useState('')
- const [isLogging, setisLogging] = useState(false)
 
  const handleSubmit = (e) =>{
    e.preventDefault();
-    setisLogging(true)
    const userData = {name, password}
-   if(userData.name == userName && userData.password == userPassword){
-    alert("true")
-
+   if(userData.name !== userName && userData.password !== userPassword){
+     
    }else{
+     console.log("true")
    }
-   setisLogging(false)
+   
  }
   return (
     <div className="md:flex">
@@ -27,7 +25,6 @@ function App() {
                <img src="" alt="" className="h-30 w-30 ml-5 mt-2 md:m-0" />
                </div>
                  <form className="bg-blue-100 rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={handleSubmit}>
-                        {isLogging ? 'Loading...' : '' }
                         <div className="mb-6 md:ml-6 md:mr-6">
                         <label className="block text-gray-700 text-sm mb-1 font-semibold" for="email address">
                           Username
