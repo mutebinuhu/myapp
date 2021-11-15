@@ -5,20 +5,19 @@ import Home from './Home'
 function App() {
 
   return (
-  <div>
-    
     <Router>
-     <Switch>
-        <Route path="/">
-           <Login />
-        </Route>
-        <Route path="/home">
-           <Home />
-        </Route>
-     </Switch>
-</Router>
-  </div>
+  <div>
+  <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
 
+  </div>
+  </Router>
   );
 }
 
