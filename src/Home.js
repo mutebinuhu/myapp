@@ -4,17 +4,17 @@ const Home = () =>{
         <div>
             <div>
                 <div className="">
-                    <nav className="flex justify-between md:py-8 md:px-8 my-10 ml-16 text-gray-500">
+                    <nav className="flex justify-between md:py-8 md:px-8 text-gray-500">
                         <div className="font-extrabold text-lg hover:text-gray-800">
                             Open Enterprise
                         </div>
                         <ul className="flex  font-medium">
-                            <div>
+                            <div className="hidden">
                                 <svg viewBox="0 0 100 80" width="40" height="40">
-  <rect width="100" height="20"></rect>
-  <rect y="30" width="100" height="20"></rect>
-  <rect y="60" width="100" height="20"></rect>
-</svg>
+                                <rect width="100" height="20"></rect>
+                                <rect y="30" width="100" height="20"></rect>
+                                <rect y="60" width="100" height="20"></rect>
+                                </svg>
                             </div>
                             <li className="px-2 hidden md:block hover:text-gray-800"><a href="">Why Open Enterprise</a></li>
                             <li className="px-2 hidden md:block hover:text-gray-800"><a href="">Features</a></li>
