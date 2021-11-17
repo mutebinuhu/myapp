@@ -1,9 +1,8 @@
 const initialState = {
     username:"admin",
     password:"admin",
-    loggedIn:false,
-    test:"",
-    payLoad:""
+    payLoad:"",
+ 
 
 }
 
@@ -12,8 +11,8 @@ const authReducer = (state=initialState, action)=>{
     case 'LOGIN':
         return{
             ...state,
-            loggedIn:true,
-            password:action.payLoad
+            password:action.payLoad,
+     
         }
     default:
             return state

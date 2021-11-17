@@ -9,46 +9,52 @@ import { login } from './actions';
     const dispatch = useDispatch();
     const info = useSelector(state=>state.authReducer)
     const pd  = useSelector(state=>state.authReducer)
+    const loginStatus = useSelector(state=>state.authReducer)
     const userName = info.username
     const userPassword = info.password
     const [name,setName] = useState('')
     const [password, setPassword] = useState('')
-   
+    
+
     const [success, setSuccess] = useState(false)
     const [errors, setErrors] = useState(false)
-
     //change password
-    const[newPassword, setNewPassword] = useState('');
 
+    const[newPassword, setNewPassword] = useState('');
     const[hideChagePasswordform, sethideChagePasswordform] = useState(false)
-    const[hideform, sethideform] = useState(false)
+    const[hideform, sethideform] = useState(true)
     const[hidePassword, setHidePassword] = useState(false)
     const[loggedIn, setLogged] = useState('')
+    const [isPending, setIspending] = useState(false)
 
     const handleSubmit = (e) =>{
       e.preventDefault();
+  
       const userData = {name, password}
       if(userData.name === userName && userData.password === userPassword){
         setSuccess(true)
         setTimeout(()=>{
+        setIspending(true);
+         
           setSuccess(false)
             if(sethideChagePasswordform(true)){
                sethideChagePasswordform(true) 
 
             }
-          
-        }, 2000)
+        },100)
         setLogged(true)
-
-   
+        sethideform(false)
+      
       }else{
        setErrors(true)
        setTimeout(()=>{
          setErrors(false)
        }, 2000)
       }
-      
+      setIspending(false)
+    
     }
+
     const changePassword = (e) =>{
         e.preventDefault()
         const newpd = newPassword;
@@ -64,9 +70,10 @@ import { login } from './actions';
     }
    
     return( <div className="md:flex">
+
     <div className=" w-full md:w-1/2 md:px-24 md:py-24 relative h-full mt-20">
+    {loginStatus.loggedIn ? "Logging" : ""}
         <div className="mb-2">
-        
         {hideChagePasswordform &&    <form style={{backgroundColor:"#10B981"}} className="bg-blue-100 rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={changePassword}>    
         {hidePassword && <div className="bg-green-900 mb-4 text-white italic py-2 px-2  mt-1"><span className="font-bold">{pd.password}</span> is the new password</div>}
                <div className="mb-6 md:ml-6 md:mr-6">
@@ -82,7 +89,8 @@ import { login } from './actions';
                </div>
       </form>}
         </div>
-        <h3 className="text-center py-4 mb-3 text-white bg-blue-900">{loggedIn ? 'Logged In' : 'Please Login'}</h3>
+
+       {hideform &&  <div><h3 className="text-center py-4 mb-3 text-white bg-blue-900">{loggedIn ? 'Logged In' : 'Please Login'}</h3>
           <form className=" rounded-lg px-3 pt-4 pb-8 m-5 md:m-0" onSubmit={handleSubmit} style={{backgroundColor:"#10B981"}}>
 
           {success && <div className="bg-green-900 mb-4 text-white italic py-2 px-2  mt-1">Success</div>}
@@ -103,10 +111,13 @@ import { login } from './actions';
                  <button className="bg-blue-900 hover:bg-blue-700 text-white font-semibold py-1 px-6 rounded-lg focus:outline-none focus:shadow-outline text-sm" type="submit">
                      Login
                  </button>
+                 {isPending &&  <button className="bg-blue-900 hover:bg-blue-700 text-white font-semibold py-1 px-6 rounded-lg focus:outline-none focus:shadow-outline text-sm" type="submit">
+                     Loading
+                 </button>}
                  
                  </div>
                  
-             </form>
+             </form></div>}
               
           </div>
 
