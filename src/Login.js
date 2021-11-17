@@ -78,7 +78,7 @@ import { login } from './actions';
         {hidePassword && <div className="bg-green-900 mb-4 text-white italic py-2 px-2  mt-1"><span className="font-bold">{pd.password}</span> is the new password</div>}
                <div className="mb-6 md:ml-6 md:mr-6">
                <label className="block text-white text-center text-sm font-semibold mb-1" for="password" value={newPassword} onChange={(e)=>e.target.value}>
-                   Change Password
+                   Change Password To Proceed
                </label>
                <input required className="appearance-none border  rounded-lg w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} />
                </div>
